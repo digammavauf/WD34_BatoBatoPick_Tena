@@ -14,8 +14,8 @@ const _robot = 1; //constant index reference for robot
 /* load scores from local storage if a string representation of the array exists */
 if(localStorage.getItem("scores")!=null) {
     scores = localStorage.getItem("scores").split(",");
-    document.querySelector("#human").innerText = scores[_human].toString();
-    document.querySelector("#robot").innerText = scores[_robot].toString();
+    document.querySelector("#human").innerText = scores[_human].toString(); //display human's score
+    document.querySelector("#robot").innerText = scores[_robot].toString(); //display robot's score
 }
 
 /* add event listeners to all BUTTONS with rps class */
@@ -73,8 +73,9 @@ document.querySelectorAll(".rps").forEach(function(rps) {
 document.querySelector("#resetscore").addEventListener("click", function() {
     if(confirm("You are about to clear all recorded scores.")) { //ask user to continue or not during the removal of scores
         localStorage.removeItem("scores"); //remove scores from persistent local storage
-        document.querySelector("#human").innerText = 0; //make it zero
-        document.querySelector("#robot").innerText = 0; //make it zero
+        scores = [0, 0]; //re-initialize scores
+        document.querySelector("#human").innerText = scores[_human].toString(); //display human's score
+        document.querySelector("#robot").innerText = scores[_robot].toString(); //display robot's score
         while(document.querySelector("#match").options.length>0) { //remove all the options from the html select object
             document.querySelector("#match").options.remove(document.querySelector("#match").options.length-1);
         }
